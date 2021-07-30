@@ -142,11 +142,11 @@ class TextEntry extends React.Component {
 				
 				<input
 					type = 'checkbox'
-					label = 'Time me!'
 					name = 'useTimer'
 					value = {this.state.timer}
 					onChange = {this.handleChange}	
-				/> Time me!
+				/>
+				<label for='useTimer'> Use timer?</label>
 				<br/>
 				{this.state.useTimer ? 
 					(<div>
@@ -186,24 +186,25 @@ class TextEntry extends React.Component {
 						value = {this.state.showTimeRemaining} 
 						onChange= {this.handleChange}
 						
-					/> Show time remaining?
+					/>
+					<label for='showTimeRemaining'> Show time remaining?</label>
 					</div>)
 					 : null}
 				<input
 					type = 'checkbox'
-					label = 'No backsies!'
-					name = 'noGoBack'
+					name = 'disableBackspace'
 					value = {this.state.noGoBack}
 					onChange = {this.handleChange}
-				/> No backsies!
+				/>
+				<label for='disableBackspace'> Disable backspace?</label>
 				<br/>
 				<input 
 					type = 'checkbox'
-					label = 'Show word count'
 					name = 'showWordCount'
 					value = {this.state.showWordCount}
 					onChange = {this.handleChange}
-				/> Show word count
+				/>
+				<label for='showWordCount'> Show word count?</label>
 				</div>
 				<br/>
 				<div>

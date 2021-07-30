@@ -48,6 +48,11 @@ table.center {
   color: white
 }
 
+label {
+  font-family: adobe-garamond-pro, serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
 
 .button {
