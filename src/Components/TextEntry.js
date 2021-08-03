@@ -5,7 +5,7 @@ class TextEntry extends React.Component {
 		super()
 		this.state = {
 			useTimer: false,
-			noGoBack: false,
+			disableBackspace: false,
 			showTimeRemaining: false,
 			minutes: 0,
 			seconds: 0,
@@ -60,31 +60,21 @@ class TextEntry extends React.Component {
 	}
 
 	handleText(text){
-		// look into replace function to see if i can avoid that if statement when str is empty
-		//this.setState({promptResponse: event.target.value})
-		//console.log(event.target.value)
-		/*if (this.state.noGoBack && event.keyCode == 8){
-			console.log('no go back')
-			event.preventDefault()
-		} */
-		if (text != null){
 			
 			this.setState({
 				promptResponse: text
 			}) 
 			let str = text
-   			const count = str.trim().split(/\s+/).length
+			const arr = str.trim().split(/\s+/)
+			const count = (arr[0] == '' ? 0 : arr.length)
 			this.setState({
 				wordCount: count
 			})
-
-			
-		}
 	}
 
 
 	onKeyDown(event) {
-		if (this.state.noGoBack && event.key == 'Backspace')
+		if (this.state.disableBackspace && event.key == 'Backspace')
 			event.preventDefault()
 		//
 		if (event.key === 'Tab') {
@@ -193,7 +183,7 @@ class TextEntry extends React.Component {
 				<input
 					type = 'checkbox'
 					name = 'disableBackspace'
-					value = {this.state.noGoBack}
+					value = {this.state.disableBackspace}
 					onChange = {this.handleChange}
 				/>
 				<label for='disableBackspace'> Disable backspace?</label>

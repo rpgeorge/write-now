@@ -89,7 +89,9 @@ class App extends React.Component {
           {this.state.promptLoaded ? <Prompt text= {this.state.prompt} user= {this.state.user} subreddit={this.state.subreddit} handleClick = {this.handleClick}/> : null}
 
           <br/>
+          <h4> Created by Rachel George </h4>
         </header>
+        
       </div>
     );
   }

@@ -16,6 +16,12 @@ h3 {
   font-style: italic;
 }
 
+h4 {
+  font-family: adobe-garamond-pro,serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
 p {
   font-family: adobe-garamond-pro, serif;
   font-weight: 400;
