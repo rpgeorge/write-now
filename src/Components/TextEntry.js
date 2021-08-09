@@ -128,6 +128,7 @@ class TextEntry extends React.Component {
 	render() {
 		return (
 			<div>
+			{!this.state.startWriting ? (<div>
 				<div>
 				
 				<input
@@ -201,7 +202,8 @@ class TextEntry extends React.Component {
 					<button className="button" onClick={this.handleClick}>Start writing!</button>
 					<br /><br />
 				</div>
-				{this.state.startWriting ? 
+				</div>)
+				: 
 					(
 						<div>
 							<br/>
@@ -231,7 +233,7 @@ class TextEntry extends React.Component {
          				 	<br/><br/>
 						</div>
 					)
-				 : null}
+				}
 
 			</div>
 			
