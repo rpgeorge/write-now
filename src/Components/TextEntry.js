@@ -8,7 +8,6 @@ class TextEntry extends React.Component {
 			disableBackspace: false,
 			showTimeRemaining: false,
 			minutes: 0,
-			seconds: 0,
 			time: {},
 			totalTime: 0,
 			showWordCount: false,
@@ -36,8 +35,7 @@ class TextEntry extends React.Component {
 		}, () => {
 			//executed only after the state has updated
 			const minutes = this.state.minutes == '' ? 0 : parseInt(this.state.minutes)
-			const seconds = this.state.seconds == '' ? 0 : parseInt(this.state.seconds)
-			const totalTime = (minutes * 60) + seconds
+			const totalTime = (minutes * 60)
 			this.setState({
 				totalTime: totalTime
 			})
@@ -49,13 +47,13 @@ class TextEntry extends React.Component {
 	}
 
 	handleClick(){
-	((this.state.seconds <= 59 && this.state.minutes <= 59) ? 
+	(this.state.minutes <= 60) ? 
 		this.setState({
 			startWriting: true
 		})
 		:
 		alert('Please check your timer input.')
-	)
+	
 
 	}
 
@@ -132,20 +130,21 @@ class TextEntry extends React.Component {
 				<div>
 				
 				<input
+					//className = 'form-check-input'
 					type = 'checkbox'
+					id = 'useTimer'
 					name = 'useTimer'
 					value = {this.state.timer}
 					onChange = {this.handleChange}	
 				/>
-				<label for='useTimer'> Use timer?</label>
+				<label for="useTimer">
+					<span></span>
+					Use timer?
+				</label>
 				<br/>
 				{this.state.useTimer ? 
 					(<div>
 						<table className = 'center'>
-							<tr>
-								<th>min</th>
-								<th>sec</th>
-							</tr>
 							<tr>
 							<td>
 								<input 
@@ -154,48 +153,53 @@ class TextEntry extends React.Component {
 									name = 'minutes' 
 									value = {this.state.minutes} 
 									onChange= {this.handleChange}
-								/>:
-							</td>
-							<td>
-								<input 
-									type= 'text'
-									//pattern= '([0-9]|[1-5][0-9])'
-									onKeyPress = {(event) => (event.key >= 0 || event.key <= 9) ? null : event.preventDefault() }
-									name = 'seconds' 
-									value = {this.state.seconds} 
-									onChange= {this.handleChange}
-								/>
+								/> minutes
 							</td>
 							</tr>
 						</table>
 					<br/>
 					<br/>
 					<input 
+						//className = 'styled-checkbox'
 						type= 'checkbox'
 						label = 'Show time remaining?' 
-						name = 'showTimeRemaining' 
+						id = 'showTimeRemaining'
+						name = 'showTimeRemaining'  
 						value = {this.state.showTimeRemaining} 
 						onChange= {this.handleChange}
 						
 					/>
-					<label for='showTimeRemaining'> Show time remaining?</label>
+					<label for="showTimeRemaining">
+						<span></span>
+						Show time remaining?
+					</label>
 					</div>)
 					 : null}
 				<input
+					//className = 'styled-checkbox'
 					type = 'checkbox'
+					id = 'disableBackspace'
 					name = 'disableBackspace'
 					value = {this.state.disableBackspace}
 					onChange = {this.handleChange}
 				/>
-				<label for='disableBackspace'> Disable backspace?</label>
+				<label for="disableBackspace">
+						<span></span>
+						Disable backspace?
+				</label>
 				<br/>
 				<input 
+					//className = 'styled-checkbox'
 					type = 'checkbox'
+					id = 'showWordCount'
 					name = 'showWordCount'
 					value = {this.state.showWordCount}
 					onChange = {this.handleChange}
 				/>
-				<label for='showWordCount'> Show word count?</label>
+				<label for="showWordCount">
+						<span></span>
+						Show word count?
+				</label>
 				</div>
 				<br/>
 				<div>

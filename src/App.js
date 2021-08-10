@@ -10,6 +10,7 @@ class App extends React.Component {
       {
       buttonClicked: false,
       promptLoaded: false,
+      loading: false,
       promptData: {},
       prompt: '',
       user:'',
@@ -23,6 +24,7 @@ class App extends React.Component {
   async handleClick (type) {
     this.setState({
       buttonClicked: true,
+      loading: true,
       promptLoaded: false
     })
     try {
@@ -41,7 +43,7 @@ class App extends React.Component {
       .then(prompt => this.setState({
         promptData: prompt.data.children[Math.floor(Math.random() * prompt.data.children.length)].data,
         subreddit: sub
-       })) 
+       }))
 
       // get access token
       let tokenData = await fetch(REDDIT_ACCESS_TOKEN_URL, {
@@ -105,6 +107,7 @@ class App extends React.Component {
       this.setState({
         prompt: this.state.promptData.title,
         user: this.state.promptData.author,
+        loading: false,
         promptLoaded: true,
       })
     } catch (error) {
@@ -126,7 +129,15 @@ class App extends React.Component {
           {!this.state.buttonClicked ? 
             <button className='button' onClick={() => this.handleClick('fiction')}>Give me an idea!</button>
           : null}
+          {this.state.loading ?
+              <div className="loader book">
+                <figure className="page"></figure>
+                <figure className="page"></figure>
+                <figure className="page"></figure>
+              </div>
+           : null}
           <br/>
+    
           {this.state.promptLoaded ? <Prompt text= {this.state.prompt} user= {this.state.user} subreddit={this.state.subreddit} handleClick = {this.handleClick}/> : null}
 
           <br/>
