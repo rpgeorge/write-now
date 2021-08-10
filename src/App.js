@@ -15,7 +15,8 @@ class App extends React.Component {
       user:'',
       subreddit: ''
     }
-    this.sortSelect = ['top/?t=week&limit=100', 'top/?t=month&limit=500', 'top/?t=all&limit=1000']
+    this.sortSelect = ['top/?t=week&limit=50', 'top/?t=month&limit=250', 'top/?t=all&limit=1000']
+    this.subSelect = ['WritingPrompts', 'SimplePrompts']
     this.handleClick = this.handleClick.bind(this)
   }
 
@@ -43,7 +44,7 @@ class App extends React.Component {
        })) 
 
       // get access token
-      const tokenData = await fetch(REDDIT_ACCESS_TOKEN_URL, {
+      let tokenData = await fetch(REDDIT_ACCESS_TOKEN_URL, {
         method: 'POST',
         body: params,
         headers: {
@@ -52,15 +53,55 @@ class App extends React.Component {
         }
       }).then(res => res.json()) 
       
-      // randomly choose sub based on type of prompt requested
-      const sub = (type == 'fiction' ? 'WritingPrompts' : null)
+      // randomly choose sub
+      const sub = this.subSelect[Math.floor(Math.random() * this.subSelect.length)]
+      //(type == 'fiction' ? 'WritingPrompts' : null)
       // randomly choose what to sort by
-      const sort = this.sortSelect[Math.floor(Math.random() * this.sortSelect.length)] 
+      const sort = (sub === 'SimplePrompts' ? 'top/?t=all&limit=300' : this.sortSelect[Math.floor(Math.random() * this.sortSelect.length)])
+      //const sort = this.sortSelect[Math.floor(Math.random() * this.sortSelect.length)] 
       
       // get listings (fetchPromptData randomly chooses a listing and updates promptData)
-      const prompt = await fetchPromptData(sub, sort, tokenData.access_token)
+      //const prompt = await fetchPromptData(sub, sort, tokenData.access_token)
       // update state with randomly chosen prompt's title and author
+
+      let prompt = await fetchPromptData(sub, sort, tokenData.access_token)
       
+      
+      
+      if (sub === 'WritingPrompts') {
+        
+        while (this.state.promptData.link_flair_text == "Established Universe"
+        || this.state.promptData.link_flair_text == "Theme Thursday"
+        || this.state.promptData.link_flair_text == "Prompt Me"
+        || this.state.promptData.link_flair_text == "Media Prompt"
+        || this.state.promptData.link_flair_text == "Image Prompt"
+        || this.state.promptData.link_flair_text == "Prompt Inspired"
+        || this.state.promptData.link_flair_text == "Off Topic"    
+        || this.state.promptData.title.includes("Follow Me Friday")
+        || this.state.promptData.title.includes("Smash 'Em Up Sunday")
+        || this.state.promptData.title.includes("Flash Fiction Challenge"))
+          {
+              prompt = await fetchPromptData(sub, sort, tokenData.access_token)
+              
+        } 
+        
+      } 
+      
+
+      if (sub === 'SimplePrompts') {
+        // make sure flair is anything but 'Meta' or 'Image Prompt'
+        
+        while (this.state.promptData.link_flair_text == 'Meta'
+            || this.state.promptData.link_flair_text == 'Image Prompt')
+            {
+              prompt = await fetchPromptData(sub, sort, tokenData.access_token)
+            }
+            
+
+      } 
+      
+      
+      //console.log(this.state.promptData)
       this.setState({
         prompt: this.state.promptData.title,
         user: this.state.promptData.author,
