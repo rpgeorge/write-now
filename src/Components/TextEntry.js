@@ -148,17 +148,17 @@ class TextEntry extends React.Component {
 							<tr>
 							<td>
 								<input 
+									className = 'styled-time-input'
 									type= 'text'
 									onKeyPress = {(event) => (event.key >= 0 || event.key <= 9) ? null : event.preventDefault() }
+									id = "minutes"
 									name = 'minutes' 
 									value = {this.state.minutes} 
 									onChange= {this.handleChange}
-								/> minutes
+								/> min
 							</td>
 							</tr>
 						</table>
-					<br/>
-					<br/>
 					<input 
 						//className = 'styled-checkbox'
 						type= 'checkbox'
