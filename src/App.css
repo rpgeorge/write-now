@@ -281,24 +281,28 @@ body {
 
 /*checkbox */
 
+.checkboxContainer {
+  display:inline-block;
+}
+
+
 input[type='checkbox'] {
   height: 0;
   width: 0;
-}
+} 
 
 input[type='checkbox'] + label {
   
   position: relative;
-  display: inline-flex;
-  
+  display: flex;
   margin: .6em 0;
-  align-items: center;
+  align-items: left;
   color: white;
   transition: color 250ms cubic-bezier(.4, .0, .23, 1);
   font-family: adobe-garamond-pro, serif;
   font-weight: 400;
   font-style: normal;
-}
+} 
 
 input[type='checkbox'] + label > ins {
   position: absolute;

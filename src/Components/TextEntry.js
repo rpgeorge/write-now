@@ -126,7 +126,7 @@ class TextEntry extends React.Component {
 	render() {
 		return (
 			<div>
-			{!this.state.startWriting ? (<div>
+			{!this.state.startWriting ? (<div className = 'checkboxContainer'>
 				<div>
 				
 				<input
@@ -159,6 +159,7 @@ class TextEntry extends React.Component {
 							</td>
 							</tr>
 						</table>
+					<br/>
 					<input 
 						//className = 'styled-checkbox'
 						type= 'checkbox'
