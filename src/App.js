@@ -135,11 +135,12 @@ class App extends React.Component {
               <div>
               <br/>
               <p>Need writing inspiration? You've come to the right place.</p>
+              <br/>
               </div>
               : 
               null
           } 
-          <br/>
+          
           {!this.state.buttonClicked ? 
             <button className='button' onClick={() => this.handleClick('fiction')}>Give me an idea!</button>
           : null}
@@ -150,7 +151,6 @@ class App extends React.Component {
                 <figure className="page"></figure>
               </div>
            : null}
-          <br/>
     
           {this.state.promptLoaded ? <Prompt text= {this.state.prompt} user= {this.state.user} subreddit={this.state.subreddit} handleClick = {this.handleClick}/> : null}
 

@@ -405,7 +405,40 @@ shrink-bounce {  0% {
 }
 }
 
+@-webkit-keyframes 
+shrink-bounce {  0% {
+ transform: scale(1);
+}
+ 33% {
+ transform: scale(.85);
+}
+ 100% {
+ transform: scale(1);
+}
+}
+
 @keyframes 
+checkbox-check {  0% {
+ width: 0;
+ height: 0;
+ border-color: #435679;
+ transform: translate3d(0, 0, 0) rotate(45deg);
+}
+ 33% {
+ width: .2em;
+ height: 0;
+ transform: translate3d(0, 0, 0) rotate(45deg);
+}
+ 100% {
+ width: .2em;
+ height: .5em;
+ border-color: #435679;
+ transform: translate3d(0, -.5em, 0) rotate(45deg);
+}
+}
+
+
+@-webkit-keyframes 
 checkbox-check {  0% {
  width: 0;
  height: 0;
