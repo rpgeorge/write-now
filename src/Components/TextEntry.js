@@ -126,11 +126,14 @@ class TextEntry extends React.Component {
 	render() {
 		return (
 			<div>
-			{!this.state.startWriting ? (<div className = 'checkboxContainer'>
+			{!this.state.startWriting ? (
 				<div>
 				
+				<div className = 'checkboxContainer'>
+				
+				<div className='options'>Options</div>
+				<br/>
 				<input
-					//className = 'form-check-input'
 					type = 'checkbox'
 					id = 'useTimer'
 					name = 'useTimer'
@@ -177,7 +180,6 @@ class TextEntry extends React.Component {
 					</div>)
 					 : null}
 				<input
-					//className = 'styled-checkbox'
 					type = 'checkbox'
 					id = 'disableBackspace'
 					name = 'disableBackspace'
@@ -185,12 +187,11 @@ class TextEntry extends React.Component {
 					onChange = {this.handleChange}
 				/>
 				<label for="disableBackspace">
-						<span></span>
-						Disable backspace?
+					<span></span>
+					Disable backspace?
 				</label>
 				<br/>
-				<input 
-					//className = 'styled-checkbox'
+				<input
 					type = 'checkbox'
 					id = 'showWordCount'
 					name = 'showWordCount'
@@ -201,8 +202,8 @@ class TextEntry extends React.Component {
 						<span></span>
 						Show word count?
 				</label>
-				</div>
 				<br/>
+				</div>
 				<div>
 					<button className="button" onClick={this.handleClick}>Start writing!</button>
 					<br /><br />
