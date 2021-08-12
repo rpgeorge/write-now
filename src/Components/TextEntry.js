@@ -52,7 +52,7 @@ class TextEntry extends React.Component {
 			startWriting: true
 		})
 		:
-		alert('Please check your timer input.')
+		alert('Please enter a value less or equal to 60.')
 	
 
 	}

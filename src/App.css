@@ -362,7 +362,7 @@ input[type="checkbox"] + label > span {
 }
 
 input[type="checkbox"] + label:hover,
-input[type="checkbox"]:active + label {font-weight: 800; }
+input[type="checkbox"]:active + label {font-weight: 600; }
 
 input[type="checkbox"] + label:hover > span,
 input[type="checkbox"]:active + label > span { background: white; }
