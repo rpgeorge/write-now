@@ -2,6 +2,7 @@ import './App.css'
 import React from 'react'
 import Prompt from './Components/Prompt.js'
 import TextEntry from './Components/TextEntry.js'
+import logo from './write-now-logo.png'
 
 class App extends React.Component {
   constructor () {
@@ -94,7 +95,8 @@ class App extends React.Component {
         // make sure flair is anything but 'Meta' or 'Image Prompt'
         
         while (this.state.promptData.link_flair_text == 'Meta'
-            || this.state.promptData.link_flair_text == 'Image Prompt')
+            || this.state.promptData.link_flair_text == 'Image Prompt'
+            || this.state.promptData.title.includes("META"))
             {
               prompt = await fetchPromptData(sub, sort, tokenData.access_token)
             }
@@ -119,9 +121,21 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Welcome to WriteNow!</h1>
-          {!this.state.buttonClicked? 
+          {!this.state.loading && !this.state.promptLoaded ? <h1>Welcome to WriteNow!</h1> : null}
+          {!this.state.loading && !this.state.promptLoaded ? <img className = 'logo' src = {logo}/> : null}
+          
+          {this.state.promptLoaded ? 
+            <div className = 'header'>
+              <h1>WriteNow</h1>
+              <img className = 'logo' src = {logo}/>
+            </div>
+            : null}
+  
+          {!this.state.buttonClicked && !this.state.loading? 
+              <div>
+              <br/>
               <p>Need writing inspiration? You've come to the right place.</p>
+              </div>
               : 
               null
           } 
