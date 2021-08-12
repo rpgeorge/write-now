@@ -60,20 +60,22 @@ table.center {
 	background-repeat: no-repeat;
 }
 
+
 .promptBackground {
-  outline: white;
-  outline-offset: 50px;
-  outline-style: dotted;
-  background-color: #435679;
-  color: white
+  min-width:inherit;
+  padding-top: 5px;
+  padding-bottom: 20px;
+  outline: solid 2px white;
+  padding-left:400px;
+  padding-right:400px;
+  background-color: #8298c0;
+  font-family: adobe-garamond-pro, serif;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
+  
 }
-.optionsBackground {
-  position: relative;
-  outline: white;
-  outline-style: dotted;
-  background-color: #435679;
-  color: white
-}
+
 /*
 label {
   font-family: adobe-garamond-pro, serif;
@@ -86,7 +88,8 @@ label {
   font-family: adobe-garamond-pro, serif;
   font-weight: 400;
   font-style: normal;
-  /*border: solid 2px black; */
+  color: #435679;
+  border: solid 2px #435679;
   outline: 0;
   padding: 1rem 4rem; 
   font-size: 1.5rem;
@@ -106,10 +109,10 @@ label {
       background-color: pink;
       z-index: -1;
       border-radius: .35rem;
-      /*border: solid 2px black; */
+      border: solid 2px #435679;
       transition: all .3s ease-in-out;
       border: 0;
-      /*box-shadow: 0px 0px 0px 2px black;*/
+      box-shadow: 0px 0px 0px 2px #435679;
       width: calc(100%);
       height: calc(100%);
 }
