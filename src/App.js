@@ -15,7 +15,8 @@ class App extends React.Component {
       promptData: {},
       prompt: '',
       user:'',
-      subreddit: ''
+      subreddit: '',
+      home: true,
     }
     this.sortSelect = ['top/?t=week&limit=50', 'top/?t=month&limit=250', 'top/?t=all&limit=1000']
     this.subSelect = ['WritingPrompts', 'SimplePrompts']
@@ -26,7 +27,7 @@ class App extends React.Component {
     this.setState({
       buttonClicked: true,
       loading: true,
-      promptLoaded: false
+      promptLoaded: false,
     })
     try {
       const REDDIT_ACCESS_TOKEN_URL = 'https://www.reddit.com/api/v1/access_token'
@@ -111,6 +112,7 @@ class App extends React.Component {
         user: this.state.promptData.author,
         loading: false,
         promptLoaded: true,
+        home: false
       })
     } catch (error) {
       console.log(error)
@@ -128,7 +130,7 @@ class App extends React.Component {
           </div>
           :null}
 
-          {this.state.promptLoaded ? 
+          {!this.state.home ? 
             <div className = 'header'>
               <h1>WriteNow</h1>
               <img className = 'logo' src = {logo}/>
@@ -164,7 +166,7 @@ class App extends React.Component {
               handleClick = {this.handleClick}
               loading= {this.state.loading} />
           : null}
-          {this.state.promptLoaded ? <TextEntry/> : null}
+          {!this.state.home ? <TextEntry/> : null}
           <br/>
           <h4> Created by Rachel George </h4>
         </header>
