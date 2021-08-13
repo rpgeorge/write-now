@@ -16,8 +16,7 @@ function Prompt(props) {
             	onClick ={() => props.handleClick('fiction')}>
                   Give me a different prompt
             </button>
-		</div>
-			<TextEntry />
+		</div>	
 		</div>
 	)
 }

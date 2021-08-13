@@ -121,9 +121,13 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          {!this.state.loading && !this.state.promptLoaded ? <h1>Welcome to WriteNow!</h1> : null}
-          {!this.state.loading && !this.state.promptLoaded ? <img className = 'logo' src = {logo}/> : null}
-          
+          {!this.state.loading && !this.state.promptLoaded ?
+          <div>
+            <h1>Welcome to WriteNow!</h1>
+            <img className = 'logo' src = {logo}/>
+          </div>
+          :null}
+
           {this.state.promptLoaded ? 
             <div className = 'header'>
               <h1>WriteNow</h1>
@@ -144,16 +148,23 @@ class App extends React.Component {
           {!this.state.buttonClicked ? 
             <button className='button' onClick={() => this.handleClick('fiction')}>Give me an idea!</button>
           : null}
+    
           {this.state.loading ?
-              <div className="loader book">
+            <div className="loader book">
                 <figure className="page"></figure>
                 <figure className="page"></figure>
                 <figure className="page"></figure>
               </div>
-           : null}
-    
-          {this.state.promptLoaded ? <Prompt text= {this.state.prompt} user= {this.state.user} subreddit={this.state.subreddit} handleClick = {this.handleClick}/> : null}
-
+          : null}
+          {this.state.promptLoaded ?
+            <Prompt 
+              text= {this.state.prompt} 
+              user= {this.state.user} 
+              subreddit={this.state.subreddit} 
+              handleClick = {this.handleClick}
+              loading= {this.state.loading} />
+          : null}
+          {this.state.promptLoaded ? <TextEntry/> : null}
           <br/>
           <h4> Created by Rachel George </h4>
         </header>
